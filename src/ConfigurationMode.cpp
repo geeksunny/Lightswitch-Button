@@ -8,18 +8,24 @@
 
 namespace buddon {
 
-char *apName() {
+const char *apName() {
+#if AP_MAC_IN_NAME
+  char *result;
   uint8_t mac[WL_MAC_ADDR_LENGTH];
   WiFi.macAddress(mac);
-  uint8_t strLen = sizeof(AP_PREFIX) + (WL_MAC_ADDR_LENGTH * 2);
-  char *result = (char *) malloc(strLen);
-  snprintf(result, strLen - 1, "%s%d%d%d%d%d%d", AP_PREFIX, mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
+  uint8_t strLen = sizeof(AP_NAME) + (WL_MAC_ADDR_LENGTH * 2);
+  result = (char *) malloc(strLen);
+  snprintf(result, strLen - 1, "%s_%d%d%d%d%d%d", AP_NAME, mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
+#else
+  const char *result = AP_NAME;
+#endif
   return result;
 }
 
 void ConfigurationMode::setup() {
   // Start wifi access point
-  char *name = apName();
+  const char *name = apName();
+
   WiFi.mode(WIFI_AP);
 #if AP_ENCRYPTED
   bool started = WiFi.softAP(name, AP_PASSWORD);
@@ -40,7 +46,8 @@ void ConfigurationMode::setup() {
     // TODO: halt the system
   }
 
-  free(name);
+  // TODO: Will call to free() fail when AP_MAC_IN_NAME==false? TEST THIS!
+  free((char *) name);
 }
 
 void ConfigurationMode::loop() {

@@ -7,17 +7,18 @@
 
 
 //// Debug Output ////
-#define BAUD_RATE     115200
+#define BAUD_RATE             115200
 
 
 //// GPIO ////
-#define MODE_SWITCH_PIN   4
+#define MODE_SWITCH_PIN       4
 
 
 //// Access Point ////
-#define AP_PREFIX     "Buddon_"
-#define AP_ENCRYPTED  true
-#define AP_PASSWORD   "PASSWORD"
+#define AP_NAME               "Buddon"
+#define AP_MAC_IN_NAME        true
+#define AP_ENCRYPTED          true
+#define AP_PASSWORD           "PASSWORD"
 
 
 #endif //WIFIBUDDON_INCLUDE_CONFIGURATION_H_
