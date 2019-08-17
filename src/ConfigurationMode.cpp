@@ -22,6 +22,35 @@ const char *apName() {
   return result;
 }
 
+void handleRoot() {
+  // TODO: Read in index.html, send to client.
+  web_server.send(200, "text/plain", "Hello, world.");
+}
+
+void handleSet() {
+  String request = web_server.client().readString();
+
+  // TODO: Parse contents of request; update configuration / perform action
+  //  * Update config values
+  //  * "Blink LED" command for identifying connected button
+
+#ifdef DEBUG_MODE
+  Serial << "From client: " << request << endl;
+#endif
+
+  web_server.send(200, "text/plain", "SET");
+}
+
+void handleNotFound() {
+  web_server.send(404, "text/plain", "HTTP404 - Not found!");
+}
+
+ConfigurationMode::ConfigurationMode() {
+  web_server.on("/", handleRoot);
+  web_server.on("/set", handleSet);
+  web_server.onNotFound(handleNotFound);
+}
+
 void ConfigurationMode::setup() {
   // Start wifi access point
   const char *name = apName();
@@ -46,14 +75,14 @@ void ConfigurationMode::setup() {
     // TODO: halt the system
   }
 
+  web_server.begin();
+
   // TODO: Will call to free() fail when AP_MAC_IN_NAME==false? TEST THIS!
   free((char *) name);
 }
 
 void ConfigurationMode::loop() {
-  // TODO: Monitor incoming requests
-  //  * Config values
-  //  * "Blink LED" command for identifying connected button
+  web_server.handleClient();
 }
 
 }

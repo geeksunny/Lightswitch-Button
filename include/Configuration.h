@@ -19,6 +19,7 @@
 #define AP_MAC_IN_NAME        true
 #define AP_ENCRYPTED          true
 #define AP_PASSWORD           "PASSWORD"
+#define HTTP_SERVER_PORT      80
 
 
 #endif //WIFIBUDDON_INCLUDE_CONFIGURATION_H_
