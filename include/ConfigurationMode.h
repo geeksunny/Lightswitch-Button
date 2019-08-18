@@ -2,14 +2,12 @@
 #define WIFIBUDDON_INCLUDE_CONFIGURATIONMODE_H_
 
 #include "OperationMode.h"
-#include "Configuration.h"
-#include <ESP8266WebServer.h>
+#include "WebServer.h"
 
 namespace buddon {
 
-static ESP8266WebServer web_server(HTTP_SERVER_PORT);
-
 class ConfigurationMode : public OperationMode {
+  WebServer server_;
  public:
   ConfigurationMode();
   void setup() override;

@@ -9,6 +9,10 @@
 
 namespace buddon {
 
+////////////////////////////////////////////////////////////////
+// Class : ConfigurationMode ///////////////////////////////////
+////////////////////////////////////////////////////////////////
+
 char *apName() {
 #if AP_MAC_IN_NAME
   char *result;
@@ -23,38 +27,46 @@ char *apName() {
 #endif
 }
 
-void handleRoot() {
-  // TODO: Read in index.html, send to client.
-  web_server.send(200, "text/plain", "Hello, world.");
-}
+class ConfigRequestHandler : public ServerDocument {
 
-void handleSet() {
-  String request = web_server.client().readString();
+  bool success = false;
 
-  // TODO: Parse contents of request; update configuration / perform action
-  //  * Update config values
-  //  * "Blink LED" command for identifying connected button
+ public:
+  void handleRequest() override {
+    String request = getRequestString();
+
+    // TODO: Parse contents of request; update configuration / perform action
+    //  * Update config values
+    //  * "Blink LED" command for identifying connected button
+
+    // TODO: set success=true if request is valid command & value was valid.
+    //  Otherwise, success=false
 
 #ifdef DEBUG_MODE
-  Serial << "From client: " << request << endl;
+    Serial << "Config set request from client: " << request << endl;
 #endif
 
-  web_server.send(200, "text/plain", "SET");
-}
+    ServerDocument::handleRequest();
+  }
 
-void handleNotFound() {
-  web_server.send(404, "text/plain", "HTTP404 - Not found!");
-}
+  String getContentType() override {
+    return "type/text";
+  }
+
+  String getResponseBody() override {
+    return success ? "SUCCESS" : "FAILED";
+  }
+
+};
 
 ConfigurationMode::ConfigurationMode() {
-  web_server.on("/", handleRoot);
-  web_server.on("/set", handleSet);
-  web_server.onNotFound(handleNotFound);
+  server_.on("/set", new ConfigRequestHandler);
 }
 
 void ConfigurationMode::setup() {
   // Start wifi access point
   char *name = apName();
+  // TODO: Move to using Strings?
 
   WiFi.mode(WIFI_AP);
 #if AP_ENCRYPTED
@@ -76,13 +88,13 @@ void ConfigurationMode::setup() {
     // TODO: halt the system
   }
 
-  web_server.begin();
+  server_.setup();
 
   free(name);
 }
 
 void ConfigurationMode::loop() {
-  web_server.handleClient();
+  server_.loop();
 }
 
 }
