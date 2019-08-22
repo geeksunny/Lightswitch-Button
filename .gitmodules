@@ -1,3 +1,0 @@
-[submodule "lib/Arduino_PrintStream"]
-	path = lib/Arduino_PrintStream
-	url = https://github.com/tttapa/Arduino-PrintStream.git

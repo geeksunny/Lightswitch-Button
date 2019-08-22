@@ -4,7 +4,7 @@
 #include <ESP8266WiFi.h>
 
 #ifdef DEBUG_MODE
-#include <PrintStream.h>
+#include <iostream>
 #endif
 
 namespace buddon {
@@ -43,7 +43,7 @@ class ConfigRequestHandler : public ServerDocument {
     //  Otherwise, success=false
 
 #ifdef DEBUG_MODE
-    Serial << "Config set request from client: " << request << endl;
+    std::cout << "Config set request from client: " << request << std::endl;
 #endif
 
     ServerDocument::handleRequest();
@@ -77,10 +77,10 @@ void ConfigurationMode::setup() {
 
 #ifdef DEBUG_MODE
   if (started) {
-    Serial << "Started AP with name: " << name << " | Encrypted: " << (AP_ENCRYPTED ? "YES" : "NO") << endl;
-    Serial << "Server IP: " << WiFi.softAPIP() << endl;
+    std::cout << "Started AP with name: " << name << " | Encrypted: " << (AP_ENCRYPTED ? "YES" : "NO") << std::endl;
+    std::cout << "Server IP: " << WiFi.softAPIP().toString() << std::endl;
   } else {
-    Serial << "FAILED to start wifi AP!";
+    std::cout << "FAILED to start wifi AP!";
   }
 #endif
 
