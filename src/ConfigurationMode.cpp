@@ -1,8 +1,7 @@
 #include "ConfigurationMode.h"
 #include "Configuration.h"
 #include <ESP8266WiFi.h>
-#include <sstream>
-#include <iomanip>
+#include "WifiTools.h"
 
 #ifdef DEBUG_MODE
 #include <iostream>
@@ -13,20 +12,6 @@ namespace buddon {
 ////////////////////////////////////////////////////////////////
 // Class : ConfigurationMode ///////////////////////////////////
 ////////////////////////////////////////////////////////////////
-
-String apName() {
-#if AP_MAC_IN_NAME
-  uint8_t mac[WL_MAC_ADDR_LENGTH];
-  WiFi.macAddress(mac);
-  std::ostringstream os(AP_NAME);
-  os << "_" << std::hex << std::setfill('0') << std::setw(2)
-     << mac[0] << mac[1] << mac[2] << mac[3] << mac[4] << mac[5];
-  // TODO: Are the braces appropriate here?
-  return String{os.str().c_str()};
-#else
-  return AP_NAME;
-#endif
-}
 
 class ConfigRequestHandler : public ServerDocument {
 
@@ -66,25 +51,8 @@ ConfigurationMode::ConfigurationMode() {
 
 void ConfigurationMode::setup() {
   // Start wifi access point
-  String name = apName();
 
-  WiFi.mode(WIFI_AP);
-#if AP_ENCRYPTED
-  bool started = WiFi.softAP(name, AP_PASSWORD);
-#else
-  bool started = WiFi.softAP(name);
-#endif
-
-#ifdef DEBUG_MODE
-  if (started) {
-    std::cout << "Started AP with name: " << name << " | Encrypted: " << (AP_ENCRYPTED ? "YES" : "NO") << std::endl;
-    std::cout << "Server IP: " << WiFi.softAPIP().toString() << std::endl;
-  } else {
-    std::cout << "FAILED to start wifi AP!";
-  }
-#endif
-
-  if (!started) {
+  if (!wifi_tools::startAP()) {
     // TODO: halt the system
   }
 

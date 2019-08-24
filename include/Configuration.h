@@ -14,6 +14,12 @@
 #define MODE_SWITCH_PIN       4
 
 
+//// Wifi Client ////
+#define CLIENT_SSID           "NetworkName"
+#define CLIENT_ENCRYPTED      true
+#define CLIENT_PASS           "NetworkPassword"
+
+
 //// Access Point ////
 #define AP_NAME               "Buddon"
 #define AP_MAC_IN_NAME        true
