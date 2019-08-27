@@ -7,6 +7,10 @@
 #include <iostream>
 #endif
 
+// TODO: Manage action and value with digital inputs
+#define CLIENT_ACTION     1
+#define CLIENT_VALUE      0
+
 namespace buddon {
 
 void ButtonMode::setup() {
@@ -16,17 +20,19 @@ void ButtonMode::setup() {
     // TODO: Properly handle halt with power down!
     //  - On failure to connect to AP, blink LED a few times before power down?
   }
+  client_.setup();
+  client_.sendPerformAction(CLIENT_ACTION, CLIENT_VALUE);
 }
 
 void ButtonMode::loop() {
-  // TODO:
-  //  If a payload is defined, perform HTTP request to server address with payload
-  //   THEN
-  //  Power down
 #ifdef DEBUG_MODE
-  std::cout << "loop() : Sleeping 5 seconds." << std::endl;
+  std::cout << "loop() : Executing client.loop()." << std::endl;
 #endif
-  delay(5000);
+  client_.loop();
+#ifdef DEBUG_MODE
+  std::cout << "loop() : Sleeping 0.5 seconds." << std::endl;
+#endif
+  delay(500);
 }
 
 }

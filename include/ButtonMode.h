@@ -2,10 +2,12 @@
 #define LIGHTSWITCHBUTTON_INCLUDE_BUTTONMODE_H_
 
 #include "OperationMode.h"
+#include "LightswitchClient.h"
 
 namespace buddon {
 
 class ButtonMode : public OperationMode {
+  lightswitch::LightswitchClient client_;
  public:
   ButtonMode() = default;
   void setup() override;
