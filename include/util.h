@@ -1,5 +1,5 @@
-#ifndef WIFIBUDDON_INCLUDE_UTIL_H_
-#define WIFIBUDDON_INCLUDE_UTIL_H_
+#ifndef LIGHTSWITCHBUTTON_INCLUDE_UTIL_H_
+#define LIGHTSWITCHBUTTON_INCLUDE_UTIL_H_
 
 #include <cstdint>
 
@@ -13,4 +13,4 @@ inline char *allocLiteral(const char *src) {
 
 }
 
-#endif //WIFIBUDDON_INCLUDE_UTIL_H_
+#endif //LIGHTSWITCHBUTTON_INCLUDE_UTIL_H_

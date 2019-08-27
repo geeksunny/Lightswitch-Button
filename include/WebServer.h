@@ -1,5 +1,5 @@
-#ifndef WIFIBUDDON_INCLUDE_WEBSERVER_H_
-#define WIFIBUDDON_INCLUDE_WEBSERVER_H_
+#ifndef LIGHTSWITCHBUTTON_INCLUDE_WEBSERVER_H_
+#define LIGHTSWITCHBUTTON_INCLUDE_WEBSERVER_H_
 
 #include <WString.h>
 #include "OperationMode.h"
@@ -41,4 +41,4 @@ class WebServer : public OperationMode {
 
 }
 
-#endif //WIFIBUDDON_INCLUDE_WEBSERVER_H_
+#endif //LIGHTSWITCHBUTTON_INCLUDE_WEBSERVER_H_

@@ -1,5 +1,5 @@
-#ifndef WIFIBUDDON_INCLUDE_CONFIGURATION_H_
-#define WIFIBUDDON_INCLUDE_CONFIGURATION_H_
+#ifndef LIGHTSWITCHBUTTON_INCLUDE_CONFIGURATION_H_
+#define LIGHTSWITCHBUTTON_INCLUDE_CONFIGURATION_H_
 
 
 // Uncomment to enable debug output via Serial console.
@@ -21,11 +21,11 @@
 
 
 //// Access Point ////
-#define AP_NAME               "Buddon"
+#define AP_NAME               "LightswitchBtn"
 #define AP_MAC_IN_NAME        true
 #define AP_ENCRYPTED          true
 #define AP_PASSWORD           "PASSWORD"
 #define HTTP_SERVER_PORT      80
 
 
-#endif //WIFIBUDDON_INCLUDE_CONFIGURATION_H_
+#endif //LIGHTSWITCHBUTTON_INCLUDE_CONFIGURATION_H_
