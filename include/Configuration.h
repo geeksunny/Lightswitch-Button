@@ -7,7 +7,8 @@
 
 
 //// Debug Output ////
-#define BAUD_RATE             115200
+// Defined as build flag. Uncomment if build flag is unavailable.
+//#define BAUD_RATE             115200
 
 
 //// GPIO ////
