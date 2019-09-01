@@ -1,0 +1,23 @@
+{
+  "global": {
+    "DEBUG_MODE": ""
+  },
+  "local": {
+    "DEBUG_MODE": "",
+    "MODE_SWITCH_PIN": 4,
+    "CLIENT": {
+      "SSID": "NetworkName",
+      "ENCRYPTED": true,
+      "PASS": "NetworkPassword"
+    },
+    "AP": {
+      "NAME": "LightswitchBtn",
+      "MAC_IN_NAME": true,
+      "ENCRYPTED": true,
+      "PASSWORD": "PASSWORD"
+    },
+    "HTTP": {
+      "SERVER_PORT": 80
+    }
+  }
+}
