@@ -1,7 +1,6 @@
 #include <ESP8266WiFi.h>
 
 #include "WifiTools.h"
-#include "Configuration.h"
 
 #if AP_MAC_IN_NAME
 #include <sstream>

@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include "Configuration.h"
 #include "ConfigurationMode.h"
 #include "ButtonMode.h"
 

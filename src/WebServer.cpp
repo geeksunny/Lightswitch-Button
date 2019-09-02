@@ -1,5 +1,4 @@
 #include "WebServer.h"
-#include "Configuration.h"
 #include <deque>
 #include <ESP8266WebServer.h>
 

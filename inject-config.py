@@ -2,15 +2,6 @@
 This script parses values from config.json for use in the build environment as value macros.
 """
 import json
-from platformio import util
-
-try:
-    Import("projenv")
-    mode = "local"
-except:
-    Import("env")
-    mode = "global"
-
 
 
 def parseConfig(d, prefix=''):
@@ -38,17 +29,17 @@ def parseConfig(d, prefix=''):
 
 cfg = []
 with open('config.json') as f:
-    data = json.load(f)
-    if mode in data:
-        cfg.extend(parseConfig(data[mode]))
+    cfg.extend(parseConfig(json.load(f)))
 
 
 if cfg:
-    print("Injecting " + str(len(cfg)) + " %s build environment config values." % mode)
-    print cfg
-    if mode == "local":
-        projenv.Append(CPPDEFINES=cfg)
-    else:
-        env.Append(CPPDEFINES=cfg)
-else:
-    print("No %s build environment config values found. Skipping config injection." % mode)
+    output = []
+    for item in cfg:
+        t = type(item)
+        if t is tuple:
+            output.append("-D%s=%s" % item)
+        elif t is str:
+            output.append("-D%s" % item)
+        else:
+            pass
+    print(' '.join(output))

@@ -1,5 +1,4 @@
 #include "ConfigurationMode.h"
-#include "Configuration.h"
 #include <ESP8266WiFi.h>
 #include "WifiTools.h"
 
