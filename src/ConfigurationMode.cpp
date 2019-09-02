@@ -1,6 +1,6 @@
 #include "ConfigurationMode.h"
 #include <ESP8266WiFi.h>
-#include "WifiTools.h"
+#include <WifiTools.h>
 
 #ifdef DEBUG_MODE
 #include <iostream>

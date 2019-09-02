@@ -2,7 +2,7 @@
 #define LIGHTSWITCHBUTTON_INCLUDE_BUTTONMODE_H_
 
 #include "OperationMode.h"
-#include "LightswitchClient.h"
+#include <LightswitchClient.h>
 
 namespace buddon {
 
