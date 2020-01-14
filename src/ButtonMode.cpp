@@ -2,7 +2,7 @@
 #include <ESP8266WiFi.h>
 #include "WifiTools.h"
 
-#ifdef DEBUG_MODE
+#ifdef IS_DEBUG_MODE
 #include <iostream>
 #endif
 
@@ -24,12 +24,12 @@ void ButtonMode::setup() {
 }
 
 void ButtonMode::loop() {
-#ifdef DEBUG_MODE
+#ifdef IS_DEBUG_MODE
   std::cout << "loop() : Executing client.loop()." << std::endl;
 #endif
   client_.loop();
-#ifdef DEBUG_MODE
   std::cout << "loop() : Sleeping 0.5 seconds." << std::endl;
+#ifdef IS_DEBUG_MODE
 #endif
   delay(500);
 }
