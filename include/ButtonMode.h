@@ -7,9 +7,9 @@
 namespace buddon {
 
 class ButtonMode : public OperationMode {
-  lightswitch::LightswitchClient client_;
+  std::unique_ptr<lightswitch::LightswitchClient> client_;
  public:
-  ButtonMode() = default;
+  ButtonMode();
   void setup() override;
   void loop() override;
 };
