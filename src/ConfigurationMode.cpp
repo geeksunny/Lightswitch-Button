@@ -1,6 +1,6 @@
 #include "ConfigurationMode.h"
-#include <ESP8266WiFi.h>
 #include <WifiTools.h>
+#include <DebugLog.hpp>
 
 #ifdef IS_DEBUG_MODE
 #include <iostream>
@@ -27,9 +27,7 @@ class ConfigRequestHandler : public ServerDocument {
     // TODO: set success=true if request is valid command & value was valid.
     //  Otherwise, success=false
 
-#ifdef IS_DEBUG_MODE
-    std::cout << "Config set request from client: " << request << std::endl;
-#endif
+    DEBUG("Config set request from client: ", request.c_str())
 
     ServerDocument::handleRequest();
   }
